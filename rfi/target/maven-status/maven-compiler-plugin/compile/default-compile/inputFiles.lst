@@ -1,0 +1,16 @@
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\rules\RuleResult.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\annotations\Header.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\annotations\Trailer.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\ReadFile.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\annotations\Body.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\formatters\FormatterString.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\formatters\FormatterTimestamp.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\formatters\FormatterInteger.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\interfaces\IBean.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\AbstractReadingFileIntegration.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\annotations\Rule.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\rules\RuleNotIsEmpty.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\interfaces\IRules.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\annotations\Values.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\interfaces\IFormatterValues.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\formatters\FormatterDouble.java

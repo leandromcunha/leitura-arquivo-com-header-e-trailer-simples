@@ -1,0 +1,16 @@
+br\com\cs\rfi\ReadFile.class
+br\com\cs\rfi\annotations\Trailer.class
+br\com\cs\rfi\interfaces\IBean.class
+br\com\cs\rfi\rules\RuleNotIsEmpty.class
+br\com\cs\rfi\formatters\FormatterDouble.class
+br\com\cs\rfi\interfaces\IFormatterValues.class
+br\com\cs\rfi\annotations\Values.class
+br\com\cs\rfi\rules\RuleResult.class
+br\com\cs\rfi\interfaces\IRules.class
+br\com\cs\rfi\annotations\Rule.class
+br\com\cs\rfi\formatters\FormatterTimestamp.class
+br\com\cs\rfi\formatters\FormatterString.class
+br\com\cs\rfi\annotations\Body.class
+br\com\cs\rfi\formatters\FormatterInteger.class
+br\com\cs\rfi\AbstractReadingFileIntegration.class
+br\com\cs\rfi\annotations\Header.class

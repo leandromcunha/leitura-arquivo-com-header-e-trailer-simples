@@ -32,11 +32,4 @@
 		<nature>com.jaspersoft.studio.babel.editor.rbeNature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>rfi</name>
-			<type>2</type>
-			<location>G:/developer/projects/eclipse/caelum/RFI/src</location>
-		</link>
-	</linkedResources>
 </projectDescription>

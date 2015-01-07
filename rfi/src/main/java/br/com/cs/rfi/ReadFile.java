@@ -26,7 +26,6 @@ public class ReadFile {
 	public String next(){
 		if( read.hasNext() ) {
 			String line = read.nextLine();
-			System.out.println( line );
 			return line;
 		}
 		return null;

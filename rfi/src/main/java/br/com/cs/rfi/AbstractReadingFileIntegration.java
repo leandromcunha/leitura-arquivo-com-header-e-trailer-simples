@@ -1,6 +1,8 @@
 package br.com.cs.rfi;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -110,6 +112,17 @@ public abstract class AbstractReadingFileIntegration<H extends IBean, L extends 
 		return listResponse;
 	}
 
+	private <M extends IBean> Method method( M model, String fieldName ) throws Exception {
+		Method[] methods = model.getClass().getDeclaredMethods();
+		for (Method method : methods) {
+			if( Modifier.isPublic(method.getModifiers()) && method.getName().startsWith( "set" ) && method.getName().toUpperCase().contains( fieldName.toUpperCase() ) ){
+				return method;
+			}
+		}
+		throw new Exception( "Method Setter the field " + fieldName + " not found!" );
+
+	}
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private <M extends IBean> M parserLine( M model , String line ) throws Exception {
 		Field[] fields = model.getClass().getDeclaredFields();
@@ -139,10 +152,13 @@ public abstract class AbstractReadingFileIntegration<H extends IBean, L extends 
 			try{
 				IFormatterValues<?> formatted = values.formatted().newInstance();
 				Object valueFormatted = formatted.getValue( values.pattern(), valueObject );
-				boolean accessible = f.isAccessible();
-				f.setAccessible( true );
-				f.set(model, valueFormatted);
-				f.setAccessible( accessible );
+				Method method = method(model, f.getName() );
+				method.invoke( model, new Object[]{ valueFormatted } );
+				
+//				boolean accessible = f.isAccessible();
+//				f.setAccessible( true );
+//				f.set(model, valueFormatted);
+//				f.setAccessible( accessible );
 			}catch( Exception e ) {
 				RuleResult result = new RuleResult();
 				result.setField( f.getName() );

@@ -12,7 +12,8 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
-		</dependency>
+		</dependency> 
+		<!-- -->
 		<dependency>
 			<groupId>br.com.cs</groupId>
 			<artifactId>rfi</artifactId>

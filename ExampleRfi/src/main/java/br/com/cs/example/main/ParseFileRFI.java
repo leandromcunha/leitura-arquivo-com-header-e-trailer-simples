@@ -8,7 +8,7 @@ import br.com.cs.rfi.AbstractReadingFileIntegration;
 public class ParseFileRFI extends AbstractReadingFileIntegration<HeaderBean, BodyBean, TrailerBean>{
 
 	public ParseFileRFI(String fileName) throws Exception {
-		super(fileName);
+		super(fileName,"UTF-8");
 	}
 
 	@Override

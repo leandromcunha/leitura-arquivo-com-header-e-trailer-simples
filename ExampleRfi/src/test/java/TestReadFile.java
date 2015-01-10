@@ -9,7 +9,6 @@ import br.com.cs.example.beans.TrailerBean;
 import br.com.cs.example.main.ParseFileRFI;
 import br.com.cs.rfi.rules.RuleResult;
 
-
 public class TestReadFile {
 
 	@Test
@@ -18,9 +17,9 @@ public class TestReadFile {
 			ParseFileRFI parse = new ParseFileRFI( "file/ExempleFile" );
 
 			List<RuleResult> fail    = parse.faulires();
-			
+
 			System.out.println( fail.size() );
-			
+
 			for (RuleResult ruleResult : fail) {
 				System.out.println( "Line: " + ruleResult.getLine() +  " Message: " + ruleResult.getMessage() );
 			}
@@ -35,13 +34,15 @@ public class TestReadFile {
 
 			for (BodyBean bodyBean : bodys) {
 				System.out.println( bodyBean.getName() );
+				if( bodyBean.ruleResult() != null ){
+					for (  RuleResult result : bodyBean.ruleResult() ) {
+						System.out.println( result.getField() + " " + result.getLine() + " " + result.getMessage() );
+					}
+				}
 			}
-			
-			Assert.assertEquals( fail.size(), 2 );
-
+			Assert.assertEquals( 2, fail.size() );
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 }

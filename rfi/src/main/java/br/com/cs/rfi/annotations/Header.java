@@ -12,4 +12,5 @@ public @interface Header {
 	int initPos();
 	int endPos();
 	int size();
+	boolean allFailure() default false;
 }

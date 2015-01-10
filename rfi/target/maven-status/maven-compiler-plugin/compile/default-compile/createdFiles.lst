@@ -1,4 +1,5 @@
 br\com\cs\rfi\ReadFile.class
+br\com\cs\rfi\beans\AbstractBeans.class
 br\com\cs\rfi\annotations\Trailer.class
 br\com\cs\rfi\interfaces\IBean.class
 br\com\cs\rfi\rules\RuleNotIsEmpty.class
@@ -12,5 +13,5 @@ br\com\cs\rfi\formatters\FormatterTimestamp.class
 br\com\cs\rfi\formatters\FormatterString.class
 br\com\cs\rfi\annotations\Body.class
 br\com\cs\rfi\formatters\FormatterInteger.class
-br\com\cs\rfi\AbstractReadingFileIntegration.class
 br\com\cs\rfi\annotations\Header.class
+br\com\cs\rfi\AbstractReadingFileIntegration.class

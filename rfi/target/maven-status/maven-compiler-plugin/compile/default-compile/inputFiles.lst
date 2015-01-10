@@ -7,10 +7,11 @@ G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\formatters\
 G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\formatters\FormatterTimestamp.java
 G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\formatters\FormatterInteger.java
 G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\interfaces\IBean.java
-G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\AbstractReadingFileIntegration.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\beans\AbstractBeans.java
 G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\annotations\Rule.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\AbstractReadingFileIntegration.java
 G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\rules\RuleNotIsEmpty.java
-G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\interfaces\IRules.java
 G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\annotations\Values.java
-G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\interfaces\IFormatterValues.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\interfaces\IRules.java
 G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\formatters\FormatterDouble.java
+G:\developer\projects\eclipse\caelum\rfi\src\main\java\br\com\cs\rfi\interfaces\IFormatterValues.java

@@ -9,6 +9,8 @@ public class RuleResult implements Serializable{
 	private Integer line;
 	private String  field;
 	private String  objectName;
+	private Integer position;
+	private Integer size;
 	
 	public String getMessage() {
 		return message;
@@ -33,6 +35,18 @@ public class RuleResult implements Serializable{
 	}
 	public void setObjectName(String objectName) {
 		this.objectName = objectName;
+	}
+	public Integer getPosition() {
+		return position;
+	}
+	public void setPosition(Integer position) {
+		this.position = position;
+	}
+	public Integer getSize() {
+		return size;
+	}
+	public void setSize(Integer size) {
+		this.size = size;
 	}
 
 }

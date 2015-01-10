@@ -16,30 +16,38 @@ import br.com.cs.rfi.interfaces.IFormatterValues;
 import br.com.cs.rfi.interfaces.IRules;
 import br.com.cs.rfi.rules.RuleResult;
 
-public abstract class AbstractReadingFileIntegration<H extends IBean, L extends IBean , T extends IBean> {
+public abstract class AbstractReadingFileIntegration<H extends IBean, B extends IBean , T extends IBean> {
 
-	private   String       fileName;
-	private   List<L>      listResponse;
-	protected List<RuleResult> faulires;
-	private   Integer lineReading = 0;
-	private   Header  aHeader;
-	private   Body    aBody;
-	private   Trailer aTrailer;
+	private static final String METHOD_WITH_SET = "set";
+	private static final String CHAR_SET = "UTF-8";
+	
+	protected List<RuleResult>  faulires;
+	private   Integer           lineReading = 0;
+	private   Header            aHeader;
+	private   Body              aBody;
+	private   Trailer           aTrailer;
+	private   Boolean           allFaulires;
+	private   List<B>           bodys;
+	private   String            fileName;
+	private   H                 header;
+	private   T                 trailer;
+	private   String            charSet;   
 
-	private H header;
-	private T trailer;
-
-	public AbstractReadingFileIntegration ( String fileName ) throws Exception {
+	public AbstractReadingFileIntegration ( String fileName , String charSet ) throws Exception {
+		this.charSet  = charSet;
 		this.fileName = fileName;
 		this.init();
 		this.process();
 	}
+	public AbstractReadingFileIntegration ( String fileName ) throws Exception {
+		this(fileName, CHAR_SET );
+	}
 
-	abstract protected L bodyBeanRfi();
+	abstract protected B bodyBeanRfi();
 	abstract protected H headerBeanRfi();
 	abstract protected T trailerBeanRfi();
 
-	protected L lines( String line ) throws Exception{
+	protected B body( String line ) throws Exception{
 		return parserLine(bodyBeanRfi(), line);
 	}
 	protected H header( String line ) throws Exception{
@@ -70,10 +78,10 @@ public abstract class AbstractReadingFileIntegration<H extends IBean, L extends 
 	}
 
 	private void process() throws Exception{
-		this.listResponse = new LinkedList<L>();
+		this.bodys = new LinkedList<B>();
 		this.faulires     = new LinkedList<RuleResult>();
 
-		ReadFile read = ReadFile.newInstance(fileName);
+		ReadFile read = ReadFile.newInstance(fileName,charSet);
 		String line = "";
 
 		boolean body = true;
@@ -84,19 +92,22 @@ public abstract class AbstractReadingFileIntegration<H extends IBean, L extends 
 
 			if( aHeader != null && aHeader.size() == line.length() && line.substring( aHeader.initPos()-1, aHeader.endPos() ).equals( aHeader.identification() ) ){
 				body = false;
+				this.allFaulires = aHeader.allFailure();
 				this.header = header(line);				
 			}
 
 			if( aTrailer != null && aTrailer.size() == line.length() && line.substring( aTrailer.initPos()-1, aTrailer.endPos() ).equals( aTrailer.identification() ) ){
 				body = false;
+				this.allFaulires = aTrailer.allFailure();
 				this.trailer = trailer( line );
 			}
 
-			if( aBody != null && ( line.length() == 0 || line.length() == aBody.size() ) && body ){
-				listResponse.add( lines( line ) );
+			if( aBody != null && ( aBody.size() == 0 || line.length() == aBody.size() ) && body ){
+				this.allFaulires = aBody.allFailure();
+				bodys.add( body( line ) );
 			}
 
-			if( body &&( aBody == null || line.length() != aBody.size() ) ){
+			if( body &&( aBody == null || ( aBody.size() > 0 && line.length() != aBody.size() ) ) ){
 				RuleResult result = new RuleResult();
 				result.setField( "not field" );
 				result.setLine( this.lineReading );
@@ -108,19 +119,21 @@ public abstract class AbstractReadingFileIntegration<H extends IBean, L extends 
 		read.close();
 	}
 
-	public List<L> getListBody() throws Exception {
-		return listResponse;
+	public List<B> getListBody() throws Exception {
+		return bodys;
 	}
 
 	private <M extends IBean> Method method( M model, String fieldName ) throws Exception {
 		Method[] methods = model.getClass().getDeclaredMethods();
 		for (Method method : methods) {
-			if( Modifier.isPublic(method.getModifiers()) && method.getName().startsWith( "set" ) && method.getName().toUpperCase().contains( fieldName.toUpperCase() ) ){
+			if( method.getName().startsWith( METHOD_WITH_SET ) && 
+			    Modifier.isPublic(method.getModifiers())       &&  
+			    method.getName().toUpperCase().contains( fieldName.toUpperCase() ) ){
+				
 				return method;
 			}
 		}
-		throw new Exception( "Method Setter the field " + fieldName + " not found!" );
-
+		throw new Exception( "Setter method for the field " + fieldName + " does not exist" );
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -144,7 +157,12 @@ public abstract class AbstractReadingFileIntegration<H extends IBean, L extends 
 					result.setLine( this.lineReading );
 					result.setMessage( rule.message() );
 					result.setObjectName( model.getClass().getSimpleName() );
-					this.faulires.add( result );
+					result.setPosition( values.position() );
+					result.setSize( values.size() );
+					model.addRuleResult( result );
+					if( this.allFaulires ){
+						faulires.add( result );
+					}
 					continue;
 				}
 			}
@@ -154,18 +172,15 @@ public abstract class AbstractReadingFileIntegration<H extends IBean, L extends 
 				Object valueFormatted = formatted.getValue( values.pattern(), valueObject );
 				Method method = method(model, f.getName() );
 				method.invoke( model, new Object[]{ valueFormatted } );
-				
-//				boolean accessible = f.isAccessible();
-//				f.setAccessible( true );
-//				f.set(model, valueFormatted);
-//				f.setAccessible( accessible );
 			}catch( Exception e ) {
 				RuleResult result = new RuleResult();
 				result.setField( f.getName() );
 				result.setLine( this.lineReading );
 				result.setMessage( e.getMessage() );
 				result.setObjectName( model.getClass().getSimpleName() );
-				this.faulires.add( result );
+				result.setPosition( values.position() );
+				result.setSize( values.size() );
+				model.addRuleResult( result );
 			}
 		}		
 		return model;

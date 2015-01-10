@@ -2,11 +2,11 @@ package br.com.cs.example.beans;
 
 import br.com.cs.rfi.annotations.Trailer;
 import br.com.cs.rfi.annotations.Values;
+import br.com.cs.rfi.beans.AbstractBeans;
 import br.com.cs.rfi.formatters.FormatterInteger;
-import br.com.cs.rfi.interfaces.IBean;
 
-@Trailer(identification="TRL",initPos=1,endPos=3,size=8 )
-public class TrailerBean implements IBean {
+@Trailer(identification="TRL",initPos=1,endPos=3,size=8,allFailure=true )
+public class TrailerBean extends AbstractBeans {
 	private static final long serialVersionUID = 1L;
 
 	@Values(position=1,size=3)

@@ -1,5 +1,4 @@
 br\com\cs\example\beans\BodyBean.class
 br\com\cs\example\main\ParseFileRFI.class
 br\com\cs\example\beans\HeaderBean.class
-TestReadFile.class
 br\com\cs\example\beans\TrailerBean.class

@@ -11,6 +11,6 @@ public @interface Trailer {
 	String identification();
 	int initPos();
 	int endPos();
-	int size();
+	int size() default 0;
 	boolean allFailure() default false;
 }

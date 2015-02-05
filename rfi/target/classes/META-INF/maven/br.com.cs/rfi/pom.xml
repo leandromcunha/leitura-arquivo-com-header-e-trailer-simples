@@ -17,7 +17,7 @@
 				<version>2.3</version>
 				<configuration>
 					<linkXref>true</linkXref>
-					<targetJdk>1.5</targetJdk>
+					<targetJdk>1.6</targetJdk>
 				</configuration>
 			</plugin>
 			<plugin>

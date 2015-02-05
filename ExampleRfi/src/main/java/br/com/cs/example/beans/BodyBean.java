@@ -18,6 +18,10 @@ public class BodyBean extends AbstractBeans {
 	@Values(position=4,size=30)
 	@Rule(message="Name is empty", rule=RuleNotIsEmpty.class)
 	private String name;
+	
+	@Values(position=34,size=8)
+	@Rule(message="CEP is empty", rule=RuleNotIsEmpty.class)
+	private String cep;
 
 	public Integer getId() {
 		return id;
@@ -33,5 +37,13 @@ public class BodyBean extends AbstractBeans {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 }

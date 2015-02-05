@@ -5,6 +5,8 @@ br\com\cs\rfi\interfaces\IBean.class
 br\com\cs\rfi\rules\RuleNotIsEmpty.class
 br\com\cs\rfi\formatters\FormatterDouble.class
 br\com\cs\rfi\interfaces\IFormatterValues.class
+br\com\cs\rfi\AbstractReadingFileIntegration$1.class
+br\com\cs\rfi\validation\IValuesReadLine.class
 br\com\cs\rfi\annotations\Values.class
 br\com\cs\rfi\rules\RuleResult.class
 br\com\cs\rfi\interfaces\IRules.class

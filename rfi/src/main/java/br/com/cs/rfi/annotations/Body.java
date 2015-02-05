@@ -8,6 +8,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Body {
-	int size();
+	int size() default 0;
 	boolean allFailure() default false;
 }

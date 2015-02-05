@@ -9,4 +9,3 @@ public interface IBean extends Serializable{
 	public List<RuleResult> ruleResult();
 	public void addRuleResult(RuleResult ruleResult);
 }
-

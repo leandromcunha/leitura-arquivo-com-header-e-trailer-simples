@@ -40,7 +40,7 @@ public class TestReadFile {
 					}
 				}
 			}
-			Assert.assertEquals( 2, fail.size() );
+			Assert.assertEquals( 8, fail.size() );
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

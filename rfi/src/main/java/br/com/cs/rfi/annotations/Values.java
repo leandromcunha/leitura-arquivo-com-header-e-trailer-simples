@@ -13,6 +13,6 @@ import br.com.cs.rfi.interfaces.IFormatterValues;
 public @interface Values {
 	int size();
 	int position();
-	String pattern() default "";
+	String pattern()   default "";
 	Class< ? extends IFormatterValues<? extends Object>> formatted() default FormatterString.class; 
 }

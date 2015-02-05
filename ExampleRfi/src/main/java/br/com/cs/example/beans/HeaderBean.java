@@ -11,7 +11,7 @@ import br.com.cs.rfi.formatters.FormatterTimestamp;
 @Header(identification="HDL",initPos=1,endPos=3,size=16 ,allFailure=true)
 public class HeaderBean extends AbstractBeans {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Values(position=1,size=3)
 	private String identification;
 	
